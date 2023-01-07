@@ -14,6 +14,9 @@ public class Constants {
     public static final String ID_COL="id";
     public static final String VIDEO_ID_COL = "videoId";
     public static final String TITLE_COL = "title";
-    public static final String WATCHED_COL = "watchedByUser";
+    public static final String DURATION_IN_SECONDS = "durationInSeconds";
+    public static final String DURATION_WATCHED_BY_USER_IN_SECONDS ="durWatchedInSeconds" ;
+    public static final String WATCHED_BY_USER = "watchedByUser";
+    public static final String VIDEO_CATEGORY = "videoCategory";
 
 }

@@ -16,7 +16,10 @@ public enum CARTOON_CATEGORY {
     MOTU_PATLU("MOTU_PATLU",R.drawable.motu_patlu),
     POKEMON("POKEMON",R.drawable.pokemon),
     TOM_AND_JERRY("TOM_AND_JERRY",R.drawable.tomandjerry),
-    POWER_RANGERS_SPD("POWER_RANGERS_SPD",R.drawable.powerrangerspd)
+    POWER_RANGERS_SPD("POWER_RANGERS_SPD",R.drawable.powerrangerspd),
+    BANDBUDH_AUR_BUDBAK("BANDBUDH_AUR_BUDBAK",R.drawable.bandbudhaurbudbaklogo),
+    MIGHTY_RAJU("MIGHTY_RAJU",R.drawable.mightyraju),
+    SCOOBY_DOO("SCOOBY_DOO",R.drawable.scoobydoo)
     ;
     private String categoryName;
     private int drawableIcon;
@@ -50,5 +53,10 @@ public enum CARTOON_CATEGORY {
     public static Drawable getCartoonDrawable(Context context,String categoryName){
         CARTOON_CATEGORY cartoon_category = getCartoon_Category(categoryName);
         return  context.getResources().getDrawable(cartoon_category.getDrawableIcon());
+    }
+    public static int getDrawableIcon(Context context,String categoryName){
+        CARTOON_CATEGORY cartoon_category = getCartoon_Category(categoryName);
+        return  cartoon_category.getDrawableIcon();
+
     }
 }

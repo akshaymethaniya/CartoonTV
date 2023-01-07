@@ -1,8 +1,10 @@
 package com.twoghadimoj.cartoontv.models;
 
 import java.io.Serializable;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 
 /**
  * Created by sonu on 10/11/17.
@@ -11,7 +13,10 @@ import java.util.regex.Pattern;
 
 public class YoutubeVideoModel implements Serializable {
     private String videoId, title;
+    private int durationInSeconds;
     private String cartoonCategoryName;
+    private int durWatchedInSeconds;
+    private boolean watchedByUser;
     public YoutubeVideoModel() {
     }
 
@@ -23,10 +28,42 @@ public class YoutubeVideoModel implements Serializable {
                 '}';
     }
 
-    public YoutubeVideoModel(String videoId, String title,String cartoonCategoryName) {
+    public int getDurWatchedInSeconds() {
+        return durWatchedInSeconds;
+    }
+
+    public boolean isWatchedByUser() {
+        return watchedByUser;
+    }
+
+    public void setDurWatchedInSeconds(int durWatchedInSeconds) {
+        this.durWatchedInSeconds = durWatchedInSeconds;
+    }
+
+    public void setWatchedByUser(boolean watchedByUser) {
+        this.watchedByUser = watchedByUser;
+    }
+
+    public YoutubeVideoModel(String videoId, String title, int durationInSeconds, String cartoonCategoryName, int durWatchedInSeconds, boolean watchedByUser) {
         this.videoId = videoId;
         this.title = title;
+        this.durationInSeconds = durationInSeconds;
         this.cartoonCategoryName = cartoonCategoryName;
+        this.durWatchedInSeconds = durWatchedInSeconds;
+        this.watchedByUser = watchedByUser;
+    }
+
+    public int getDurationInSeconds() {
+        return durationInSeconds;
+    }
+
+    public String getFormattedDuation() {
+        Date d = new Date(durationInSeconds * 1000L);
+        String pattern = d.getHours() == 5 ? "m:ss":"H:m:ss";
+        SimpleDateFormat df = new SimpleDateFormat(pattern); // HH for 0-23
+        df.setTimeZone(TimeZone.getTimeZone("GMT"));
+        String time = df.format(d);
+        return time;
     }
 
     public String getCartoonCategoryName() {
@@ -41,7 +78,7 @@ public class YoutubeVideoModel implements Serializable {
         return videoId;
     }
 
-//    private String extractVideoIDFromResponse(String response){
+    //    private String extractVideoIDFromResponse(String response){
 //        //pattern to match
 //        String patternString = "(\\/watch\\?)v=(.*)&list";
 //        Pattern pattern = Pattern.compile(patternString);

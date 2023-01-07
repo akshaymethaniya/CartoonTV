@@ -5,16 +5,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.twoghadimoj.cartoontv.database.DBOperations;
 import com.twoghadimoj.cartoontv.enums.CARTOON_CATEGORY;
 import com.twoghadimoj.cartoontv.PlayYoutubeVideo;
 import com.twoghadimoj.cartoontv.R;
 import com.twoghadimoj.cartoontv.helpers.YTDummyData;
+import com.twoghadimoj.cartoontv.models.YoutubeVideoModel;
+
+import java.util.ArrayList;
 
 public class DashboardFragment extends Fragment {
 
@@ -34,6 +39,9 @@ public class DashboardFragment extends Fragment {
         CardView pokemonCardView = root.findViewById(R.id.pokemonCardView);
         CardView tomAndJerryCardView = root.findViewById(R.id.tomAndJerryCardView);
         CardView prsCardView = root.findViewById(R.id.prsCardView);
+        CardView brbCardView = root.findViewById(R.id.babCardView);
+        CardView mightyRajuCardView = root.findViewById(R.id.mightyRajuCardView);
+        CardView scoobydoCardView = root.findViewById(R.id.scoobydooCardView);
 
         setOnClickListerner(oggyCardView, CARTOON_CATEGORY.OGGY_AND_COCKRACHES.getCategoryName());
         setOnClickListerner(chhotaBheemCardView, CARTOON_CATEGORY.CHHOTA_BHEEM.getCategoryName());
@@ -43,6 +51,9 @@ public class DashboardFragment extends Fragment {
         setOnClickListerner(pokemonCardView,CARTOON_CATEGORY.POKEMON.getCategoryName());
         setOnClickListerner(tomAndJerryCardView,CARTOON_CATEGORY.TOM_AND_JERRY.getCategoryName());
         setOnClickListerner(prsCardView,CARTOON_CATEGORY.POWER_RANGERS_SPD.getCategoryName());
+        setOnClickListerner(brbCardView,CARTOON_CATEGORY.BANDBUDH_AUR_BUDBAK.getCategoryName());
+        setOnClickListerner(mightyRajuCardView,CARTOON_CATEGORY.MIGHTY_RAJU.getCategoryName());
+        setOnClickListerner(scoobydoCardView,CARTOON_CATEGORY.SCOOBY_DOO.getCategoryName());
 
         return root;
     }
@@ -51,7 +62,13 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), PlayYoutubeVideo.class);
-                intent.putExtra("videoItem",new YTDummyData().getFirstVideoForCategory(getContext(),category));
+//                intent.putExtra("videoItem",new YTDummyData().getFirstVideoForCategory(getContext(),category));
+                ArrayList<YoutubeVideoModel> youtubeVideoModel = new DBOperations(getContext()).getAllVideosOfCategory(category);
+                if(youtubeVideoModel.size() == 0){
+                    Toast.makeText(getContext(),"No Videos.",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                intent.putExtra("videoItem",youtubeVideoModel.get(0));
                 intent.putExtra("showVideosOfSameCategory",true);
                 startActivity(intent);
             }
