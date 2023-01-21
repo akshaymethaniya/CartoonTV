@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class YoutubeVideoList extends Application {
-    static ArrayList<YoutubeVideoModel> youtubeVideoModels;
+    static ArrayList<YoutubeVideoModel> youtubeVideoModels = null;
 
     public static ArrayList<YoutubeVideoModel> getYoutubeVideoModels() {
-        Collections.shuffle(youtubeVideoModels);
+        if(youtubeVideoModels!=null)
+            Collections.shuffle(youtubeVideoModels);
         return youtubeVideoModels;
     }
 

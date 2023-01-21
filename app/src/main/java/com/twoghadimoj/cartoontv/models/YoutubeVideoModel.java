@@ -17,6 +17,24 @@ public class YoutubeVideoModel implements Serializable {
     private String cartoonCategoryName;
     private int durWatchedInSeconds;
     private boolean watchedByUser;
+    private boolean isFavourite;
+    private Date favoriteAt;
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public Date getFavoriteAt() {
+        return favoriteAt;
+    }
+
+    public void setFavoriteAt(Date favoriteAt) {
+        this.favoriteAt = favoriteAt;
+    }
+
+    public void setFavourite(boolean favourite) {
+        isFavourite = favourite;
+    }
+
     public YoutubeVideoModel() {
     }
 
@@ -43,14 +61,25 @@ public class YoutubeVideoModel implements Serializable {
     public void setWatchedByUser(boolean watchedByUser) {
         this.watchedByUser = watchedByUser;
     }
-
-    public YoutubeVideoModel(String videoId, String title, int durationInSeconds, String cartoonCategoryName, int durWatchedInSeconds, boolean watchedByUser) {
+    public YoutubeVideoModel(String videoId, String title, int durationInSeconds, String cartoonCategoryName, int durWatchedInSeconds, boolean watchedByUser,boolean isFavourite,Date favoriteAt) {
         this.videoId = videoId;
         this.title = title;
         this.durationInSeconds = durationInSeconds;
         this.cartoonCategoryName = cartoonCategoryName;
         this.durWatchedInSeconds = durWatchedInSeconds;
         this.watchedByUser = watchedByUser;
+        this.isFavourite = isFavourite;
+        this.favoriteAt = favoriteAt;
+    }
+    public YoutubeVideoModel(String videoId, String title, int durationInSeconds, String cartoonCategoryName, int durWatchedInSeconds, boolean watchedByUser,boolean isFavourite) {
+        this.videoId = videoId;
+        this.title = title;
+        this.durationInSeconds = durationInSeconds;
+        this.cartoonCategoryName = cartoonCategoryName;
+        this.durWatchedInSeconds = durWatchedInSeconds;
+        this.watchedByUser = watchedByUser;
+        this.isFavourite = isFavourite;
+        this.favoriteAt = null;
     }
 
     public int getDurationInSeconds() {
@@ -59,7 +88,7 @@ public class YoutubeVideoModel implements Serializable {
 
     public String getFormattedDuation() {
         Date d = new Date(durationInSeconds * 1000L);
-        String pattern = d.getHours() == 5 ? "m:ss":"H:m:ss";
+        String pattern = d.getHours() == 5  ? "m:ss":"H:m:ss";
         SimpleDateFormat df = new SimpleDateFormat(pattern); // HH for 0-23
         df.setTimeZone(TimeZone.getTimeZone("GMT"));
         String time = df.format(d);

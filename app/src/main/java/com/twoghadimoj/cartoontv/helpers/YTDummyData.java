@@ -71,7 +71,7 @@ public class YTDummyData {
                         String videoId = videoDetails.getString("id");
                         String video_title = videoDetails.getString("title");
                         int durationInSeconds = videoDetails.getInt("length");
-                       return new YoutubeVideoModel(videoId,video_title,durationInSeconds,videoCategoryTitle,0,false);
+                       return new YoutubeVideoModel(videoId,video_title,durationInSeconds,videoCategoryTitle,0,false,false);
                     }
                 }
             }
@@ -104,7 +104,7 @@ public class YTDummyData {
                         String videoId = videoDetails.getString("id");
                         String video_title = videoDetails.getString("title");
                         int durationInSeconds = videoDetails.getInt("length");
-                        YoutubeVideoModel videoModel = new YoutubeVideoModel(videoId,video_title,durationInSeconds,videoCategoryTitle,0,false);
+                        YoutubeVideoModel videoModel = new YoutubeVideoModel(videoId,video_title,durationInSeconds,videoCategoryTitle,0,false,false);
                         youtubeVideoModels.add(videoModel);
                     }
                     break;
@@ -139,7 +139,7 @@ public class YTDummyData {
                     String videoId = videoDetails.getString("id");
                     String video_title = videoDetails.getString("title");
                     int durationInSeconds = videoDetails.getInt("length");
-                    YoutubeVideoModel videoModel = new YoutubeVideoModel(videoId,video_title,durationInSeconds,videoCategoryTitle,0,false);
+                    YoutubeVideoModel videoModel = new YoutubeVideoModel(videoId,video_title,durationInSeconds,videoCategoryTitle,0,false,false);
                     youtubeVideoModels.add(videoModel);
                 }
 

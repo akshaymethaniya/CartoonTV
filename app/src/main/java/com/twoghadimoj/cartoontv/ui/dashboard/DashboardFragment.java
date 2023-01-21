@@ -1,10 +1,14 @@
 package com.twoghadimoj.cartoontv.ui.dashboard;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,11 +16,10 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.twoghadimoj.cartoontv.PlayYoutubeVideo;
 import com.twoghadimoj.cartoontv.database.DBOperations;
 import com.twoghadimoj.cartoontv.enums.CARTOON_CATEGORY;
-import com.twoghadimoj.cartoontv.PlayYoutubeVideo;
 import com.twoghadimoj.cartoontv.R;
-import com.twoghadimoj.cartoontv.helpers.YTDummyData;
 import com.twoghadimoj.cartoontv.models.YoutubeVideoModel;
 
 import java.util.ArrayList;
@@ -24,13 +27,26 @@ import java.util.ArrayList;
 public class DashboardFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
-
+    private boolean orientationLand;
+    private View root,catView,catViewLandScapeMode;
+    private LinearLayout displayCategoriesView;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel =
                 new ViewModelProvider(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        this.root = root;
+        orientationLand = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+        displayCategoriesView = root.findViewById(R.id.displayCategoriesView);
+        catView = getLayoutInflater().inflate(R.layout.display_categories, displayCategoriesView,false);
+        catViewLandScapeMode = getLayoutInflater().inflate(R.layout.display_categories_landscape, displayCategoriesView,false);
 
+        basedOnOrientationAddLayout(root,orientationLand);
+        initialize(root);
+
+        return root;
+    }
+    private void initialize(View root){
         CardView oggyCardView = root.findViewById(R.id.oggyCardView);
         CardView chhotaBheemCardView = root.findViewById(R.id.chhotaBheemCardView);
         CardView mrbeanCardView = root.findViewById(R.id.mrbeanCardView);
@@ -54,8 +70,10 @@ public class DashboardFragment extends Fragment {
         setOnClickListerner(brbCardView,CARTOON_CATEGORY.BANDBUDH_AUR_BUDBAK.getCategoryName());
         setOnClickListerner(mightyRajuCardView,CARTOON_CATEGORY.MIGHTY_RAJU.getCategoryName());
         setOnClickListerner(scoobydoCardView,CARTOON_CATEGORY.SCOOBY_DOO.getCategoryName());
-
-        return root;
+    }
+    private void basedOnOrientationAddLayout(View root,boolean orientationLand){
+        displayCategoriesView.removeAllViews();
+        displayCategoriesView.addView(orientationLand?catViewLandScapeMode:catView);
     }
     private void setOnClickListerner(CardView cardView,String category){
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -73,5 +91,14 @@ public class DashboardFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+        //Update the Flag here
+        orientationLand = (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE ? true : false);
+        basedOnOrientationAddLayout(root,orientationLand);
+        initialize(root);
     }
 }

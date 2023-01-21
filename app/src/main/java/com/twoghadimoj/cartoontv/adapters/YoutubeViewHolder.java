@@ -22,7 +22,7 @@ public class YoutubeViewHolder extends RecyclerView.ViewHolder {
     public ProgressBar progressBar;
     public ImageView videoThumbnailImageView1;
     public LinearLayout loadingPanel;
-//    public LikeButton heartButton;
+    public LikeButton heartButton;
     public YoutubeViewHolder(View itemView) {
         super(itemView);
 //        videoThumbnailImageView = itemView.findViewById(R.id.video_thumbnail_image_view);
@@ -32,6 +32,6 @@ public class YoutubeViewHolder extends RecyclerView.ViewHolder {
         progressBar = itemView.findViewById(R.id.progressBar);
         videoThumbnailImageView1 = itemView.findViewById(R.id.video_thumbnail_image_view1);
         loadingPanel = itemView.findViewById(R.id.loadingPanel);
-//        heartButton = itemView.findViewById(R.id.heartButton);
+        heartButton = itemView.findViewById(R.id.heartButton);
     }
 }

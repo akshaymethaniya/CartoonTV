@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -13,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -40,7 +40,6 @@ public class PlayYoutubeVideo extends YouTubeBaseActivity {
     private YoutubeVideoAdapter youtubeVideoAdapter;
     public Timer timer = new Timer();
     private DBOperations dbOperations;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,13 +118,16 @@ public class PlayYoutubeVideo extends YouTubeBaseActivity {
                             public void onVideoEnded() {
                                 ArrayList<YoutubeVideoModel> youtubeVideoModelArrayList = youtubeVideoAdapter.getYoutubeVideoModelArrayList();
                                 //Play video at index 0
+                                YoutubeVideoModel lastPlayed = playingItem;
                                 playingItem = youtubeVideoModelArrayList.remove(0);
+                                youtubeVideoModelArrayList.add(lastPlayed);
                                 updateValuesForCurrentlyPlayingVideo(playingItem);
                             }
 
                             @Override
                             public void onError(YouTubePlayer.ErrorReason errorReason) {
                                 timer.cancel();
+                                Toast.makeText(PlayYoutubeVideo.this,"Failed to play video",Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -133,7 +135,7 @@ public class PlayYoutubeVideo extends YouTubeBaseActivity {
                     @Override
                     public void onInitializationFailure(YouTubePlayer.Provider provider,
                                                         YouTubeInitializationResult youTubeInitializationResult) {
-
+                        Toast.makeText(PlayYoutubeVideo.this,"You don't have the latest YouTube App installed on your device.",Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -155,7 +157,8 @@ public class PlayYoutubeVideo extends YouTubeBaseActivity {
         ArrayList<YoutubeVideoModel> youtubeVideoList;
         if (!showVideosOfSameCategory) {
 //            youtubeVideoList= new YTDummyData().getRandomVideos(this);
-            youtubeVideoList = dbOperations.getAllVideos();
+            Log.d("READ_DATA","Inside");
+            youtubeVideoList = (ArrayList<YoutubeVideoModel>) dbOperations.getAllVideos();
 //            youtubeVideoList = YoutubeVideoList.getYoutubeVideoModels();
         } else {
 //            youtubeVideoList = YoutubeVideoList.getYoutubeVideoModels();
@@ -163,9 +166,13 @@ public class PlayYoutubeVideo extends YouTubeBaseActivity {
 //            youtubeVideoList = new YTDummyData().getYTVideosForCategory(this,playingItem.getCartoonCategoryName());
         }
 
-        YoutubeVideoAdapter adapter = new YoutubeVideoAdapter(this, removeCurrentVideoFromList(youtubeVideoList), new YoutubeVideoAdapter.OnItemClickListener() {
+        YoutubeVideoAdapter adapter = new YoutubeVideoAdapter(this, removeCurrentVideoFromList(playingItem,youtubeVideoList), new YoutubeVideoAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(YoutubeVideoModel item) {
+                //Play video at index 0
+                ArrayList<YoutubeVideoModel> youtubeVideoModelArrayList = youtubeVideoAdapter.getYoutubeVideoModelArrayList();
+                removeCurrentVideoFromList(item,youtubeVideoModelArrayList);
+                youtubeVideoModelArrayList.add(playingItem);
                 updateValuesForCurrentlyPlayingVideo(item);
             }
         });
@@ -183,12 +190,16 @@ public class PlayYoutubeVideo extends YouTubeBaseActivity {
         categoryCardView.setForeground(CARTOON_CATEGORY.getCartoonDrawable(this, item.getCartoonCategoryName()));
 
         //play new video
-        mYouTubePlayer.loadVideo(item.getVideoId(),item.getDurWatchedInSeconds()*1000);
+        if(mYouTubePlayer!=null)
+            mYouTubePlayer.loadVideo(item.getVideoId(),item.getDurWatchedInSeconds()*1000);
+
+        youtubeVideoAdapter.setYoutubeVideoModelArrayList(youtubeVideoAdapter.getYoutubeVideoModelArrayList());
+        youtubeVideoAdapter.notifyDataSetChanged();
         //Update recycleView
-        populateRecyclerView();
+//        populateRecyclerView();
     }
 
-    private ArrayList<YoutubeVideoModel> removeCurrentVideoFromList(ArrayList<YoutubeVideoModel> youtubeVideoList) {
+    private ArrayList<YoutubeVideoModel> removeCurrentVideoFromList(YoutubeVideoModel playingItem,ArrayList<YoutubeVideoModel> youtubeVideoList) {
         for (int i = 0; i < youtubeVideoList.size(); i++) {
             YoutubeVideoModel youtubeVideoModel = youtubeVideoList.get(i);
             if (youtubeVideoModel.getVideoId().equals(playingItem.getVideoId())) {

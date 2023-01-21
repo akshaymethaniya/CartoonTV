@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.flexbox.FlexboxLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center_horizontal"
+    app:flexDirection="row"
+    app:justifyContent="center"
+    android:layout_marginBottom="10dp"
+    app:flexWrap="wrap"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/oggyCardView"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg1">
+
+                <ImageView
+                    android:id="@+id/oggy_ImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/oggy" />
+
+                <TextView
+                    android:id="@+id/folder1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/oggy_ImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="OGGY"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mrbeanCardView"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg1">
+
+                <ImageView
+                    android:id="@+id/mrBean_imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/mrbean" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mrBean_imageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="MR. BEAN"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/chhotaBheemCardView"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg1">
+
+                <ImageView
+                    android:id="@+id/cbImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/chhotabheem" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cbImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="CHHOTA BHEEM"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ben10CardView"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg1">
+
+                <ImageView
+                    android:id="@+id/ben10ImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ben10" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ben10ImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="BEN 10"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/motuPatluCardView"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg1">
+
+                <ImageView
+                    android:id="@+id/motuPatluImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/motu_patlu" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/motuPatluImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="MOTU PATLU"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/pokemonCardView"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg1">
+
+                <ImageView
+                    android:id="@+id/pokemonImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/pokemon" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pokemonImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="POKÉMON"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/tomAndJerryCardView"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg1">
+
+                <ImageView
+                    android:id="@+id/tomAndJerryImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/tomandjerry" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tomAndJerryImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:text="TOM &amp; JERRY"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/prsCardView"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg1">
+
+                <ImageView
+                    android:id="@+id/prsImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/powerrangerspd" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/prsImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:text="POWER RANGER SPD"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/babCardView"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg1">
+
+                <ImageView
+                    android:id="@+id/babImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bandbudhaurbudbaklogo" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/babImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:text="BANDBUDH AUR BUDBAK"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mightyRajuCardView"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg1">
+
+                <ImageView
+                    android:id="@+id/mightyRajuImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/mightyraju" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mightyRajuImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:text="MIGHTY RAJU"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/scoobydooCardView"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg1">
+
+                <ImageView
+                    android:id="@+id/scoobydooImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/scoobydoo" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/scoobydooImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:text="SCOOBY-DOO!"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </com.google.android.flexbox.FlexboxLayout>

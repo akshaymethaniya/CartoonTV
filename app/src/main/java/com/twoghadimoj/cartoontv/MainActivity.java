@@ -10,9 +10,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.play.core.review.ReviewInfo;
+import com.google.android.play.core.review.ReviewManager;
+import com.google.android.play.core.review.ReviewManagerFactory;
+import com.google.android.play.core.review.model.ReviewErrorCode;
 import com.twoghadimoj.cartoontv.database.DBHandler;
+import com.twoghadimoj.cartoontv.helpers.ThumbnailListAvailableInFiles;
 import com.twoghadimoj.cartoontv.ui.dashboard.DashboardFragment;
 import com.twoghadimoj.cartoontv.ui.home.HomeFragment;
 
@@ -34,9 +40,8 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private NavController navController;
-//    final Fragment homeFragment = new HomeFragment();
-//    final Fragment catFragment = new DashboardFragment();
-//    String activeFragment = "HOME";
+    private ReviewManager reviewManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,20 +57,22 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_favourites)
                 .build();
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-//        Thread thread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                loadDBIfNotLoaded();
-//            }
-//        });
-//        thread.start();
-
+        reviewManager = ReviewManagerFactory.create(this);
+        Task<ReviewInfo> request = reviewManager.requestReviewFlow();
+        request.addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                // We can get the ReviewInfo object
+                ReviewInfo reviewInfo = task.getResult();
+            }else{
+                Log.d("REVIEW_APP","ERROR : "+task.getException().getMessage());
+            }
+        });
         new LoadDBTask().execute();
     }
 
@@ -73,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here.
@@ -83,25 +91,27 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void loadDBIfNotLoaded() {
         SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-        boolean dbLoaded = sh.getBoolean("dbLoaded",false);
-        if(!dbLoaded){
+        boolean dbLoaded = sh.getBoolean("dbLoaded", false);
+        if (!dbLoaded) {
             DBHandler dbHandler = new DBHandler(this);
             boolean res = dbHandler.loadData();
-            if(!res) return;
-            //Log.d("DB_LOAD","Loaded db");
+            if (!res) return;
+            Log.d("DB_LOAD","Loaded db");
             SharedPreferences.Editor myEdit = sh.edit();
-            myEdit.putBoolean("dbLoaded",true);
+            myEdit.putBoolean("dbLoaded", true);
             myEdit.commit();
         }
     }
 
-    public class LoadDBTask extends AsyncTask<Void,Void,Void>{
+    public class LoadDBTask extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
             loadDBIfNotLoaded();
+//            loadThumbnailMap();
             return null;
         }
 
@@ -109,9 +119,14 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             //Log.d("DBLOAD","Loaded Data");
-            navController.navigate(R.id.navigation_home);
+//            navController.navigate(R.id.navigation_home);
         }
     }
+//    private void loadThumbnailMap(){
+//        ThumbnailListAvailableInFiles.initializeThumbnailMap(this);
+//        Log.d("CACHE_READ","Initialized Cache HashMap");
+//    }
+
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)

@@ -3,6 +3,7 @@ package com.twoghadimoj.cartoontv.ui.home;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,7 +25,6 @@ import com.twoghadimoj.cartoontv.PlayYoutubeVideo;
 import com.twoghadimoj.cartoontv.R;
 import com.twoghadimoj.cartoontv.database.DBOperations;
 import com.twoghadimoj.cartoontv.helpers.YTDummyData;
-import com.twoghadimoj.cartoontv.models.YoutubeVideoList;
 import com.twoghadimoj.cartoontv.models.YoutubeVideoModel;
 import com.twoghadimoj.cartoontv.adapters.YoutubeVideoAdapter;
 
@@ -92,6 +92,7 @@ public class HomeFragment extends Fragment implements SearchView.OnCloseListener
      * populate the recyclerview and implement the click event here
      */
     private void populateRecyclerView() {
+        Log.d("POPULATE","Inside");
         SharedPreferences sh = getContext().getSharedPreferences("MySharedPref", MODE_PRIVATE);
         boolean dbLoaded = sh.getBoolean("dbLoaded",false);
         ArrayList<YoutubeVideoModel> youtubeVideoList;
@@ -111,7 +112,7 @@ public class HomeFragment extends Fragment implements SearchView.OnCloseListener
                 intent.putExtra("videoItem",item);
                 startActivity(intent);
             }
-        },orientationLand);
+        },orientationLand,null);
         adapter.setHasStableIds(true);
         this.youtubeVideoAdapter = adapter;
         recyclerView.setAdapter(adapter);

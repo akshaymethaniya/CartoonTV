@@ -3,15 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginEnd="10dp"
-    android:layout_marginRight="10dp"
+    android:layout_marginBottom="5dp"
+    android:background="?android:colorBackground"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="7dp">
+    app:cardElevation="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,13 +33,13 @@
                     android:indeterminateTintMode="src_atop" />
             </LinearLayout>
 
-            <!--            <com.google.android.youtube.player.YouTubeThumbnailView-->
-            <!--                android:id="@+id/video_thumbnail_image_view"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="160dp"-->
-            <!--                android:layout_gravity="center"-->
-            <!--                android:scaleType="centerCrop"-->
-            <!--                android:visibility="gone" />-->
+<!--            <com.google.android.youtube.player.YouTubeThumbnailView-->
+<!--                android:id="@+id/video_thumbnail_image_view"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="160dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                android:visibility="gone" />-->
 
             <ImageView
                 android:id="@+id/video_thumbnail_image_view1"
@@ -88,18 +84,21 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/bg1"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:layout_weight="10"
-            android:padding="7dp">
+            android:background="?android:colorBackground"
+            android:gravity="center_vertical"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_weight="8">
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -116,26 +115,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:gravity="center_vertical"
                     android:ellipsize="end"
-                    android:maxLines="2"
-                    android:textColor="@color/textColor"
+                    android:gravity="center_vertical"
+                    android:lines="2"
+                    android:textColor="@color/videoTitleColor"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
-
-<!--            <com.like.LikeButton-->
-<!--                app:icon_type="heart"-->
-<!--                android:layout_weight="1"-->
-<!--                android:id="@+id/heartButton"-->
-<!--                android:layout_gravity="center"-->
-<!--                app:icon_size="25dp"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                app:like_drawable="@drawable/ic_heart_red"-->
-<!--                app:unlike_drawable="@drawable/ic_heart"-->
-<!--                android:focusable="true"-->
-<!--                android:clickable="true"-->
-<!--                android:layout_height="wrap_content"/>-->
+            <com.like.LikeButton
+                android:id="@+id/heartButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="0dp"
+                android:layout_margin="0dp"
+                app:icon_size="25dp"
+                app:icon_type="heart"
+                app:like_drawable="@drawable/favorite_red_filled"
+                app:unlike_drawable="@drawable/favorite_border"
+                />
 
             <!--            <androidx.appcompat.widget.AppCompatCheckBox-->
             <!--                android:layout_width="40dp"-->

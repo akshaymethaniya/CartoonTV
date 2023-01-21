@@ -53,7 +53,7 @@ public class ThumbnailHelper {
 
         @Override
         protected Void doInBackground(Drawable... drawables) {
-            File cacheDir = context.getFilesDir();
+            File cacheDir = context.getCacheDir();
             String PATH = cacheDir.getAbsolutePath() + "/" + youtubeVideoModel.getVideoId() + ".png";
             try {
                 File file = new File(PATH);
